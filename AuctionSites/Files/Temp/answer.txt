@@ -1,0 +1,105 @@
+libname cert "/folders/myfolders/cert/input";
+
+data cert.output;
+set cert.input12;
+/* do while (salary < 500000 */
+do until (salary gt 500000);
+year+1;
+salary+(salary*5.56/100);
+output;
+end;
+run;
+
+data cert.output13;
+set cert.input13;
+Chdate= put(date1, date9.);
+num1=input(charnum,comma7.);
+run;
+
+proc means data=cert.output13;
+var num1;
+run;
+
+data cert.output27;
+set cert.input27;
+where country in ("US","us");
+run;
+
+proc sort data=cert.output27 out=cert.output27a;
+by state descending postal_code employee_id;
+run;
+
+proc sort data=cert.input27 out=cert.output27b nodupkey;
+by descending postal_code;
+run;
+
+data cleandata36;
+set cert.input36;
+group=upcase(group);
+where group in ('A', 'B');
+run; 
+
+proc means data =cleandata36;
+class group;
+var kilograms;
+run;
+
+data cert.output36;
+set cleandata36;
+where kilograms between 40 and 200;
+run;
+
+proc means data= cert.output36;
+class group;
+var kilograms;
+run;
+
+data  cert.program44;
+set cert.input44;
+drop bp_status weight_status smoking_status;
+if .< cholesterol < 200 then chol_status ='Safe';
+else if 200 <= cholesterol <= 239 then chol_status = 'High-Borderline';
+else if cholesterol >=240 then chol_status='High';
+if chol_status='Safe';
+run;
+
+proc freq data = cert.program44;
+tables chol_status;
+run;
+
+data cert.program48;
+set cert.input48;
+y1=input(y, 10.3);
+if cvar in ('A' 'B' 'C' 'D' 'E' 'F' 'G') then Group = 1;
+else if Cvar in ('H' 'I' 'J' 'K' 'L' 'M' 'N' 'O') THEN Group = 2;
+else if Cvar in ('P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'Y' 'Z') THEN Group = 3;
+RUN;
+
+Proc means data=cert.program48;
+class group;
+var x y1;
+run;
+
+Answer: 4992
+SAS code that could be used to solve this project:
+data work.cleandata36;
+  set cert.input36;
+  if upcase(group) in ('A','B');
+run;
+
+proc means data=work.cleandata36 median;
+  class group;
+  var kilograms;
+run;
+
+data results.output36;
+  set cleandata36;
+  if Kilograms < 40 or Kilograms > 200 then do;
+    if group='A' then kilograms=79;
+    else kilograms=89;
+  end;
+run;
+
+proc contents data=results.output36;
+run;
+The correct answer is: 4992
