@@ -197,10 +197,13 @@
                     <label class="text-light">Email</label><br />
                     <%--<input class="login_input" type="text" name="email">--%>
                     <asp:TextBox ID="txtemail" AutoCompleteType="Disabled" class="login_input" name="email" placeholder="email" runat="server" ></asp:TextBox>
-                    </br/>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="AddCoutryButton" ErrorMessage="*This Field Required." ForeColor="Red" ControlToValidate="txtemail"></asp:RequiredFieldValidator>
+                    <br/>
 		  	<label class="text-light">Password</label><br />
                     <%--<input class="login_input" type="password" name="">--%>
                     <asp:TextBox ID="txtpassword" AutoCompleteType="Disabled" runat="server" TextMode="Password" class="login_input" placeholder="Password" MaxLength="10"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  runat="server" ValidationGroup="AddCoutryButton" ErrorMessage="*This Field Required." ForeColor="Red" ControlToValidate="txtpassword"></asp:RequiredFieldValidator>
+                    <br />
                     <input type="checkbox" name="remember">
                     <label class="text-light">Remember my login Details</label><br />
                     <a class="text-light" href="">Forgot Password?</a><br />
@@ -208,9 +211,10 @@
                         <asp:Label ID="lblMessage" runat="server" />
                     </div>
                     <%--<button type="button" class="btn btn-warning mt-4">Sign In</button>--%>
-                    <asp:Button ID="btnlogin" runat="server" Text="Sign In" class="btn btn-warning mt-4" OnClick="btnlogin_Click" />
+                    <asp:Button ID="btnlogin" runat="server" Text="Sign In" class="btn btn-warning mt-4" ValidationGroup="AddCoutryButton" OnClick="btnlogin_Click" />
                     <button type="button" onclick="window.location.href='VendorRegistration.aspx'" class="btn btn-light float-right mt-4">Register Now</button>
                 </div>
+            </div>
             </div>
             <!-- </section> -->
             <section class="section-content py-3">
